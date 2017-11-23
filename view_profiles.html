@@ -1,0 +1,102 @@
+<html>
+	<!-- The profile page for a specified user -->
+	<head>
+	  <title>COMPSYS 302 Client - View Profiles</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link href="/static/css/style.css" rel="stylesheet">
+	  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	  <script type="text/javascript" src="/static/js/jquery-1.11.1.js"></script>
+	  <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+	  <script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+	</head>
+	
+	<body>
+        <nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <a class="navbar-brand" href="/home">COMPSYS 302 Client</a>
+			</div>
+			<ul class="nav navbar-nav">
+			  <li><a href="/home"><span class="glyphicon glyphicon-home"></span> Home - {loggedUsername:}</a></li>
+			  <li><a href="/edit_profile"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+			  <li class="active"><a href="/view_profiles"> View Profiles</a></li>
+			</ul>
+			<form action="/view_profiles" method="post" class="navbar-form navbar-left" enctype="multipart/form-data">
+			  <div class="form-group">
+				<input type="text" name="username_to_view" class="form-control" placeholder="Search by username">
+			  </div>
+			  <button type="submit" class="btn btn-default" onclick="saveScrollLocations()">Search</button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+			  <li>
+				<li>
+				<div class="btn-group">
+				  <button type="button" class="btn btn-default navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{status:} <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+					<li><a href="/set_status?status=Online&page=view_profiles&destination={username:}">Online</a></li>
+					<li><a href="/set_status?status=Idle&page=view_profiles&destination={username:}">Idle</a></li>
+					<li><a href="/set_status?status=Away&page=view_profiles&destination={username:}">Away</a></li>
+					<li><a href="/set_status?status=Do Not Disturb&page=view_profiles&destination={username:}">Do Not Disturb</a></li>
+					<li><a href="/set_status?status=Offline&page=view_profiles&destination={username:}">Offline</a></li>
+				  </ul>
+				</div>
+			  </li>			  <li><a href="/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+			  <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			</ul>
+		  </div>
+		</nav>
+		<div class="spacer"></div>
+		
+		
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8" style="float: none; margin: 0 auto;">
+					<div class="well well-sm">
+						<div class="row">
+							<div class="col-md-6" style="max-height: 375px">
+								<img src="{image_url:}" class="img-rounded img-responsive" style="vertical-align: middle; height: 375px; margin: auto" />
+							</div>
+							<div class="col-md-6">
+								<h2>{fullname:}</h2>
+								<small><cite>{location:} <i class="glyphicon glyphicon-map-marker">
+								</i></cite></small>
+								<hr>
+								<div class="well well-md" id="well-greyish">
+									<p id="increased-size">
+										<i class="glyphicon glyphicon-user modified-glyp"></i>Username: {username:}</a>
+										<br />
+										<br />
+										<i class="glyphicon glyphicon-briefcase modified-glyp"></i>Position: {position:}
+										<br />	
+										<br />
+										<i class="glyphicon glyphicon-info-sign modified-glyp"></i>Description: {description:}
+									</p>
+									<br>
+									<form action="/home?username={username:}" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+											<button class="btn btn-large btn-primary" type="submit" value="Send Message">Send Message</button>
+										</div> 
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		<footer class="footer">
+		  <div class="container_footer">
+		    <p class="footer_text">© Adil Bhayani</p>
+		  </div>
+		</footer>
+    </body>
+	
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<html>
+		<!-- The second authentication page of the application -->
+		<head>
+			<meta charset="utf-8">
+			<title>COMPSYS 302 - Login</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="The login page for login server">
+			<meta name="author" content="Adil Bhayani">
+			<link href="/static/css/bootstrap.css" rel="stylesheet">
+			<link href="/static/css/loginStyle.css" rel="stylesheet">
+			<link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+		</head>
+		
+		<body>
+			<h1>COMPSYS 302 Server Login Second Factor</h1>
+			<hr>
+			<div class="spacer"></div>
+			<div class="container">
+				<form action="/verify_two_factor" method="post" enctype="multipart/form-data" class="form-signin">
+					<img src="{secret_link:}"></img>
+					<h3 class="form-signin-heading">Verify the code below</h3>
+					<br>
+					<input type="text" class="input-block-level" placeholder="Code" name="the_code"/>
+					<button class="btn btn-large btn-primary" type="submit" value="verify" style="tcenter;">Verify</button>
+				</form>
+			</div>
+			
+			<footer class="footer">
+				<div class="container_footer">
+					<p class="footer_text">© Adil Bhayani</p>
+				</div>
+			</footer>
+		</body>
+
+	</html>	

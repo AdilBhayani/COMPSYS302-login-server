@@ -1,0 +1,3 @@
+*.pyc
+*.db
+public/received_files/*

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- The home page of the application -->
+	<head>
+	  <title>COMPSYS 302 Client - Home</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link href="/static/css/style.css" rel="stylesheet">
+	  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	  <link href="/static/css/simplemde.min.css" rel="stylesheet">
+	  <script type="text/javascript" src="/static/js/jquery-1.11.1.js"></script>
+	  <script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+	  <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+	  <script type="text/javascript" src="/static/js/simplemde.min.js"></script>
+	</head>
+	<body>
+
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <a class="navbar-brand" href="/home">COMPSYS 302 Client</a>
+		</div>
+		<ul class="nav navbar-nav">
+		  <li class="active"><a href="/home"><span class="glyphicon glyphicon-home"></span> Home - {loggedUsername:}</a></li>
+		  <li><a href="/edit_profile"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+		  <li><a href="/view_profiles"> View Profiles</a></li>
+		</ul>
+		<form action="/view_profiles" method="post" class="navbar-form navbar-left" enctype="multipart/form-data">
+		  <div class="form-group">
+			<input type="text" name="username_to_view" class="form-control" placeholder="Search by username">
+			<button type="submit" class="btn btn-default" onclick="saveScrollLocations()">Search</button>
+		  </div> 
+		</form>
+		<ul class="nav navbar-nav navbar-right">
+		  <li>
+		    <div class="btn-group">
+			  <button type="button" class="btn btn-default navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				{status:} <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+				<li><a href="/set_status?status=Online&destination={username:}">Online</a></li>
+				<li><a href="/set_status?status=Idle&destination={username:}">Idle</a></li>
+				<li><a href="/set_status?status=Away&destination={username:}">Away</a></li>
+				<li><a href="/set_status?status=Do Not Disturb&destination={username:}">Do Not Disturb</a></li>
+				<li><a href="/set_status?status=Offline&destination={username:}">Offline</a></li>
+			  </ul>
+			</div>
+		  </li>
+		  <li><a href="/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+		  <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+		</ul>
+	  </div>
+	</nav>
+	  
+	<div class="main_holder">
+	  <div class="container-fluid">
+	    <div class="row">
+		  <div class="col-md-3" style="background-color:lavender;" id="users_box">
+		    <div class="action-menu">
+			  {userHtml:}
+		    </div>
+		  </div>
+		  <div class="col-md-9" style="background-color:lavenderblush;" id="messages_box">
+		    <div class="msg-wrap " id="send_messages_box">
+				{messagesHtml:}
+            </div>
+			<hr>			
+			<div class="container col-md-12" id="type_messages_box">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default" style="max-height: 190px;">
+							<div class="panel-body">  
+								<textarea id="theMessage" name="message" form="form_id" class="form-control" placeholder="Type in your message" rows="2" style="margin-bottom:10px; width: 100%;"></textarea>
+								<div class="col-md-8">
+									<button class="btn btn-info" id="upload_button" style="margin-left: 20px;">Upload File</button>
+									<form accept-charset="utf-8" id="form_id" action = "send_message" method="post" enctype="multipart/form-data" style="float:right;">
+										<input name="destination" value="{username:}" type="hidden", id="the_destination">
+										<div class="col-md-6">
+											<input type="checkbox" name="the_markdown" value="1">Send with markdown?<br>
+										</div>
+										<div class="col-md-6">
+											<button class="btn btn-info" id="submit_button" style="margin-left: 20px;">Post New Message</button>
+										</div>
+									</form>
+								</div>
+								<div class="col-md-4" >
+									<div class="col-md-8" style="text-overflow: hidden; overflow: hidden; max-height: 30px;">
+									<p id = "file_name" style="vertical-align: middle; margin-top: 10px;">Upload a file here</p>
+									</div>
+									<div class="col-md-4">
+									<form accept-charset="utf-8" action = "send_file" method="post" enctype="multipart/form-data" style="float:right;">
+										<input type="file" id="upload" style="display: none;" name="the_file"/> 
+										<input name="destination" value="{username:}" type="hidden">
+										<button class="btn btn-large btn-primary" type="submit" value="Login">Send File</button>
+									</form>
+									</div>
+								</div>
+							</div>	
+						</div>		
+					</div>
+				</div>
+			</div>
+		  </div>
+	    </div>
+	 </div>
+	</div>
+	<footer class="footer">
+	  <div class="container_footer">
+		<p class="footer_text">© Adil Bhayani</p>
+	  </div>
+	</footer>
+	
+	<script src="/static/js/home.js"></script>
+	<script>new SimpleMDE({script:});</script>
+	</body>
+</html>
